@@ -21,26 +21,30 @@ public class RemoveStudent extends JFrame{
         rem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int admno = Integer.parseInt(adm.getText());
-                try {
-                    Keys k = new Keys();
-                    String url = k.URL;
-                    String user = k.USER;
-                    String password = k.PASSWORD;
-                    Connection con = DriverManager.getConnection(url, user, password);
-                    Statement sta = con.createStatement();
-                    String query = "delete from studentdetails where adm=" + admno;
-                    int x = sta.executeUpdate(query);
-                    if (x == 0) {
-                        JOptionPane.showMessageDialog(rem, "Data not present.");
-                    } else {
-                        JOptionPane.showMessageDialog(rem, "Student details is sucessfully removed");
+                String a = adm.getText();
+                if (a.equals("")) {
+                    JOptionPane.showMessageDialog(rem, "All Fields Must Be Filled");
+                } else {
+                    int admno = Integer.parseInt(a);
+                    try {
+                        Keys k = new Keys();
+                        String url = k.URL;
+                        String user = k.USER;
+                        String password = k.PASSWORD;
+                        Connection con = DriverManager.getConnection(url, user, password);
+                        Statement sta = con.createStatement();
+                        String query = "delete from studentdetails where adm=" + admno;
+                        int x = sta.executeUpdate(query);
+                        if (x == 0) {
+                            JOptionPane.showMessageDialog(rem, "Data not present.");
+                        } else {
+                            JOptionPane.showMessageDialog(rem, "Student details is sucessfully removed");
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
+                    adm.setText(null);
                 }
-                catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                adm.setText(null);
             }
         });
         cancel.addActionListener(new ActionListener() {
