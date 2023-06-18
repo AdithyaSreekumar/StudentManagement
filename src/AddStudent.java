@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 
 public class AddStudent extends JFrame {
@@ -73,7 +74,11 @@ public class AddStudent extends JFrame {
                             connection.close();
                             f.dispose();
                             new AdminWindow();
-                        } catch (Exception exception) {
+                        }
+                        catch (SQLIntegrityConstraintViolationException exception){
+                            JOptionPane.showMessageDialog(submit,"Admission number should be unique");
+                        }
+                        catch (Exception exception) {
                             exception.printStackTrace();
                         }
                     }
