@@ -1,8 +1,5 @@
 import javax.swing.*;
-import javax.xml.transform.Result;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -31,10 +28,9 @@ public class StudentDetails extends JFrame {
         String mail;
         String mobile;
         try {
-            Keys k = new Keys();
-            String url = k.URL;
-            String user = k.USER;
-            String password = k.PASSWORD;
+            String url = Keys.URL;
+            String user = Keys.USER;
+            String password = Keys.PASSWORD;
             Connection connection = DriverManager.getConnection(url, user, password);
             String query = "select * from studentdetails where adm=" + admno;
             Statement sta = connection.createStatement();
@@ -53,18 +49,14 @@ public class StudentDetails extends JFrame {
                 mob.setText(mobile);
             }
             connection.close();
-
         }
         catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        back.addActionListener(e -> {
                 f.dispose();
                 new Home();
-            }
         });
     }
 }

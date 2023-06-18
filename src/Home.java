@@ -1,10 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Home extends JFrame{
-    private JLabel head;
     private JButton admin;
     private JButton stud;
     private JPanel home;
@@ -16,20 +13,14 @@ public class Home extends JFrame{
         f.setLocationRelativeTo(f);
         f.setVisible(true);
 
-        admin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                f.dispose();
-                new AdminLogin();
-            }
+        admin.addActionListener(e -> {
+            f.dispose();
+            new AdminLogin();
         });
 
-        stud.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                f.dispose();
-                new StudentLogin();
-            }
+        stud.addActionListener(e -> {
+            f.dispose();
+            new StudentLogin();
         });
     }
 }

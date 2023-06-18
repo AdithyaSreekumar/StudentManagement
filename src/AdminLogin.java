@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class AdminLogin extends JFrame{
     private JTextField username;
@@ -17,26 +15,23 @@ public class AdminLogin extends JFrame{
         f.setVisible(true);
 
 
-        cancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                f.dispose();
-                new Home();
-            }
+        cancel.addActionListener(e -> {
+            f.dispose();
+            new Home();
         });
 
 
-        login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String user=username.getText();
-                String pass=password.getText();
-                if(user.equals("admin") && pass.equals("password")){
-                    JOptionPane.showMessageDialog(login, "Login Successfull,\n Welcome.");
+        login.addActionListener(e -> {
+            String user = username.getText();
+            String pass = password.getText();
+            if (user.equals("") || pass.equals("")) {
+                JOptionPane.showMessageDialog(login, "All Fields Must Be Filled");
+            } else {
+                if (user.equals("admin") && pass.equals("password")) {
+                    JOptionPane.showMessageDialog(login, "Login Successful,\n Welcome.");
                     f.dispose();
                     new AdminWindow();
-                }
-                else {
+                } else {
                     JOptionPane.showMessageDialog(login, "Invalid login credentials,\nTry Again.");
                 }
             }
