@@ -47,6 +47,11 @@ public class StudentDetails extends JFrame {
                 adm.setText(admn);
                 email.setText(mail);
                 mob.setText(mobile);
+                fn.setEditable(false);
+                ln.setEditable(false);
+                adm.setEditable(false);
+                email.setEditable(false);
+                mob.setEditable(false);
             }
             connection.close();
         }
