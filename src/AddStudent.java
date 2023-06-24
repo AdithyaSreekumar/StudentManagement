@@ -37,54 +37,57 @@ public class AddStudent extends JFrame {
 
             if (firstname.equals("") || lastname.equals("") || emailId.equals("") || adm.getText().equals("") || mobile.getText().equals("") || passw.equals("") || cpassw.equals("")) {
                 JOptionPane.showMessageDialog(submit, "All Fields Must Be Filled");
-            } else {
-                int admno = Integer.parseInt(ad);
-                long mob = Long.parseLong(m);
-                int len = 0;
-                long mobc = mob;
-                while (mobc != 0) {
-                    len++;
-                    mobc /= 10;
-                }
-                if ((passw.equals(cpassw))) {
-                    String msg = "" + firstname;
-                    msg += " \n";
-                    if (len != 10) {
-                        JOptionPane.showMessageDialog(submit, "Enter a valid mobile number");
-                    } else {
-                        try {
-                            String url = Keys.URL;
-                            String user = Keys.USER;
-                            String password = Keys.PASSWORD;
-                            Connection connection = DriverManager.getConnection(url, user, password);
-
-                            String query = "INSERT INTO StudentDetails values('" + firstname + "','" + lastname + "'," + admno + ",'" +
-                                    passw + "','" + emailId + "'," + m + ")";
-                            Statement sta = connection.createStatement();
-                            int x = sta.executeUpdate(query);
-                            if (x == 0) {
-                                JOptionPane.showMessageDialog(submit, "This Data already exist");
-                            } else {
-                                JOptionPane.showMessageDialog(submit, "Welcome " + msg + "\nYour account is successfully created");
-                            }
-                            first.setText(null);
-                            last.setText(null);
-                            adm.setText(null);
-                            email.setText(null);
-                            mobile.setText(null);
-                            connection.close();
-                            f.dispose();
-                            new AdminWindow();
-                        }
-                        catch (SQLIntegrityConstraintViolationException exception){
-                            JOptionPane.showMessageDialog(submit,"Admission number should be unique");
-                        }
-                        catch (Exception exception) {
-                            exception.printStackTrace();
-                        }
+            }
+            else {
+                try {
+                    int admno = Integer.parseInt(ad);
+                    long mob = Long.parseLong(m);
+                    int len = 0;
+                    long mobc = mob;
+                    while (mobc != 0) {
+                        len++;
+                        mobc /= 10;
                     }
-                } else {
-                    JOptionPane.showMessageDialog(submit, "Password Mismatch, \nEnter Again");
+                    if ((passw.equals(cpassw))) {
+                        String msg = "" + firstname;
+                        msg += " \n";
+                        if (len != 10) {
+                            JOptionPane.showMessageDialog(submit, "Enter a valid mobile number");
+                        } else {
+                            try {
+                                String url = Keys.URL;
+                                String user = Keys.USER;
+                                String password = Keys.PASSWORD;
+                                Connection connection = DriverManager.getConnection(url, user, password);
+
+                                String query = "INSERT INTO StudentDetails values('" + firstname + "','" + lastname + "'," + admno + ",'" +
+                                        passw + "','" + emailId + "'," + m + ")";
+                                Statement sta = connection.createStatement();
+                                int x = sta.executeUpdate(query);
+                                if (x == 0) {
+                                    JOptionPane.showMessageDialog(submit, "This Data already exist");
+                                } else {
+                                    JOptionPane.showMessageDialog(submit, "Welcome " + msg + "\nYour account is successfully created");
+                                }
+                                first.setText(null);
+                                last.setText(null);
+                                adm.setText(null);
+                                email.setText(null);
+                                mobile.setText(null);
+                                connection.close();
+                                f.dispose();
+                                new AdminWindow();
+                            } catch (SQLIntegrityConstraintViolationException exception) {
+                                JOptionPane.showMessageDialog(submit, "Admission number should be unique");
+                            } catch (Exception exception) {
+                                exception.printStackTrace();
+                            }
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(submit, "Password Mismatch, \nEnter Again");
+                    }
+                } catch (NumberFormatException exception) {
+                    JOptionPane.showMessageDialog(submit, "Ensure Admission number and Mobile number are numeric values");
                 }
             }
         });
