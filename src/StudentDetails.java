@@ -21,6 +21,7 @@ public class StudentDetails extends JFrame {
         f.setMinimumSize(new Dimension(350, 425));
         f.setLocationRelativeTo(f);
         f.setVisible(true);
+        f.setResizable(false);
 
         String fName;
         String lName;

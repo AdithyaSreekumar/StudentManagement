@@ -24,6 +24,7 @@ public class AddStudent extends JFrame {
         f.setMinimumSize(new Dimension(350, 425));
         f.setLocationRelativeTo(f);
         f.setVisible(true);
+        f.setResizable(false);
 
         submit.addActionListener(e -> {
             String firstname = first.getText();

@@ -15,6 +15,7 @@ public class RemoveStudent extends JFrame{
         f.setMinimumSize(new Dimension(350, 425));
         f.setLocationRelativeTo(f);
         f.setVisible(true);
+        f.setResizable(false);
 
         rem.addActionListener(e -> {
             String a = adm.getText();

@@ -13,6 +13,7 @@ public class AdminWindow extends JFrame{
         f.setMinimumSize(new Dimension(350, 425));
         f.setLocationRelativeTo(f);
         f.setVisible(true);
+        f.setResizable(false);
 
         addStudentButton.addActionListener(e -> {
             f.dispose();

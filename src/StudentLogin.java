@@ -17,6 +17,7 @@ public class StudentLogin extends JFrame{
         f.setMinimumSize(new Dimension(350, 425));
         f.setLocationRelativeTo(f);
         f.setVisible(true);
+        f.setResizable(false);
 
         login.addActionListener(e -> {
             String admno = ut.getText();

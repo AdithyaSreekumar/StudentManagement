@@ -12,6 +12,7 @@ public class Home extends JFrame{
         f.setMinimumSize(new Dimension(350, 425));
         f.setLocationRelativeTo(f);
         f.setVisible(true);
+        f.setResizable(false);
 
         admin.addActionListener(e -> {
             f.dispose();
